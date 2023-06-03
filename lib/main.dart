@@ -60,40 +60,25 @@ class MyApp extends StatelessWidget {
     Color color = Theme.of(context).primaryColor;
     indexBox(int index) {
       return Container(
-        width: 50,
-        height: 50,
+        width: 65,
+        height: 65,
         decoration: BoxDecoration(
           color: Colors.black87,
           borderRadius: BorderRadius.circular(50),
         ),
-        child: Text(
-          '# $index',
+        child: Center(child: Text(
+          '# $index.',
           textAlign: TextAlign.center,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            fontSize: 20,
           ),
         ),
+      ),
       );
     }
-    Widget boxIndex =  Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        color: Colors.black87,
-        borderRadius: BorderRadius.circular(50),
-      ),
-      child: const Text(
-        '# 1',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 30,
-        ),
-      ),
-    );
+
 
     Widget buttonSection = Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -123,7 +108,7 @@ class MyApp extends StatelessWidget {
         ),
         body: SafeArea(
           child: ListView(
-               children: List.generate(5, (index) {
+               children: List.generate(15, (index) {
             return Container(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -169,48 +154,7 @@ class MyApp extends StatelessWidget {
               //
 
               ),
-          // child: Container(
-          //       padding: const EdgeInsets.all(16),
-          //       child: Stack(
-          //         alignment: AlignmentDirectional.bottomCenter,
-          //         children: List.generate(5, (index) => null),
-          //         children: [
-          //           Image.asset(
-          //             'images/lake.jpg',
-          //             width: 600,
-          //             height: 240,
-          //             fit: BoxFit.cover,
-          //           ),
-          //
-          //           Container(
-          //             margin: const EdgeInsets.only(left: 16.0, right: 16.0),
-          //             child: titleSection,
-          //             ),
-          //           Positioned(
-          //             top: 10,
-          //             right: 10,
-          //             child: Container(
-          //               width: 200,
-          //               height: 50,
-          //               alignment: Alignment.topCenter,
-          //               color: Colors.white54,
-          //               child: buttonSection,
-          //             ),
-          //           ),
-          //           // Container(
-          //           // child: textSection,),
-          //           Positioned(
-          //             top: 10,
-          //             left: 10,
-          //             child: Container(
-          //               child: boxIndex,
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //
-          //
-          //     ),
+
         ),
       ),
     );
