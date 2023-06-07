@@ -3,8 +3,35 @@ import 'package:less1/aboutcard.dart';
 
 void main() => runApp(const MaterialApp(home: MyApp()));
 
-class MyApp extends StatelessWidget {
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  final List<CardInfo> _listOfCards = [];
+
+  @override
+  void initState() {
+    generalCardInfo();
+
+    super.initState();
+  }
+
+  void generalCardInfo() {
+    for (int i = 0; i < 10; i++) {
+      _listOfCards.add(
+        CardInfo(
+          title: 'Title $i',
+            numberOfCard: i,
+        )
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +56,14 @@ class MyApp extends StatelessWidget {
               children: [
                 /*2*/
                 const Text(
-                  'Oeschinen Lake Campground',
+                  'Title: ',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Kandersteg, Switzerland',
+                  'index',
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -59,6 +86,7 @@ class MyApp extends StatelessWidget {
       ),
     );
     Color color = Theme.of(context).primaryColor;
+
     indexBox(int index) {
       return Container(
         width: 65,
@@ -89,25 +117,14 @@ class MyApp extends StatelessWidget {
         _buildButtonColumn(Colors.black87, Icons.share, 'SHARE'),
       ],
     );
-    // Widget textSection = const Padding(
-    //   padding: EdgeInsets.all(32),
-    //   child: Text(
-    //     'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-    //         'Alps. Situated 1,578 meters above sea level, it is one of the '
-    //         'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-    //         'half-hour walk through pastures and pine forest, leads you to the '
-    //         'lake, which warms to 20 degrees Celsius in the summer. Activities '
-    //         'enjoyed here include rowing, and riding the summer toboggan run.',
-    //     softWrap: true,
-    //   ),
-    // );
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Flutter home work'),
         ),
         body: SafeArea(
           child: ListView(
-               children: List.generate(15, (index) {
+               children: List.generate(_listOfCards.length, (index) {
             return Container(
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -190,4 +207,16 @@ Column _buildButtonColumn(Color color, IconData icon, String label) {
       ),
     ],
   );
+}
+
+class CardInfo {
+  final String title;
+  final int numberOfCard;
+  final String imageUrl;
+
+  CardInfo({
+    required this.title,
+    required this.numberOfCard,
+    this.imageUrl = 'assets/images/image.jpg',
+  });
 }
