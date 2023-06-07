@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:less1/aboutcard.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MaterialApp(home: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
-      width: 540,
+      //width: 540,
       height: 100,
       decoration: const BoxDecoration(
         color: Colors.black,
@@ -100,9 +101,7 @@ class MyApp extends StatelessWidget {
     //     softWrap: true,
     //   ),
     // );
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Flutter home work'),
         ),
@@ -117,15 +116,26 @@ class MyApp extends StatelessWidget {
                   children: [
                     Image.asset(
                       'images/lake.jpg',
-                      width: 600,
+                      width: double.infinity,
                       height: 240,
                       fit: BoxFit.cover,
                     ),
 
-                    Container(
-                      margin: const EdgeInsets.only(left: 16.0, right: 16.0),
-                      child: titleSection,
+                    GestureDetector(
+                      onTap:() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AboutPage(),
+                            ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 16.0, right: 16.0),
+                        child: titleSection,
+                      ),
                     ),
+
                     Positioned(
                       top: 10,
                       right: 10,
@@ -156,7 +166,7 @@ class MyApp extends StatelessWidget {
               ),
 
         ),
-      ),
+
     );
   }
 }
