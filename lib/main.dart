@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:less1/aboutcard.dart';
-import 'package:less1/card.dart';
+import 'package:less1/cardPage.dart';
+
 
 void main() => runApp(const MyApp());
 
