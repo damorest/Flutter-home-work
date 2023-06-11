@@ -30,14 +30,14 @@ class _MyAppState extends State<MyApp> {
       ));
     }
   }
-//
-//   void updateCard(CardInfo newCardInfo) {
-//     setState(() {
-//       _listOfCards[newCardInfo.numberOfCard] = newCardInfo;
-//     });
-//   }
-//
-//
+
+  void updateCard(CardInfo newCardInfo) {
+    setState(() {
+      _listOfCards[newCardInfo.numberOfCard] = newCardInfo;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,14 +51,17 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(8.0),
               child: CustomCard(
                 cardInfo: _listOfCards[index],
-                onTap: () {
-                 Navigator.push(
+                onTap: () async{
+                 final newCardInfo = await Navigator.push<CardInfo>(
                      context,
                  MaterialPageRoute(
                      builder: (_) => AboutPage(cardInfo: _listOfCards[index],
                      )
                  )
                  );
+                 if(newCardInfo != null) {
+                   updateCard(newCardInfo);
+                 }
                 },
               ),
             );
@@ -71,7 +74,7 @@ class _MyAppState extends State<MyApp> {
 
 
 class CardInfo {
-  final String title;
+  String title;
   final int numberOfCard;
   final String imageUrl;
 

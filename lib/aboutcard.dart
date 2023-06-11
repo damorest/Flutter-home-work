@@ -12,39 +12,59 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   late TextEditingController controller;
+  late CardInfo cardInfo2;
 
   @override
   void initState() {
-    controller = TextEditingController(text: widget.cardInfo.title);
+
+    cardInfo2 = CardInfo(
+      title: widget.cardInfo.title,
+        numberOfCard: widget.cardInfo.numberOfCard,
+      imageUrl: widget.cardInfo.imageUrl
+    );
+    controller = TextEditingController(text: cardInfo2.title);
+
     super.initState();
   }
 
+  void save() {
+   cardInfo2.title = controller.text;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-        title: const Text('Flutter home work')),
-        body: SafeArea(
-            child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Flutter home work')),
+      body: SafeArea(
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
               child: Column(
-                children: [
-                  Image.asset(
-                    'images/lake.jpg',
-                    width: double.infinity,
-                    height: 240,
-                    fit: BoxFit.cover,
+                 children: [
+                  Column(
+                    children: [
+                      Image.asset(
+                        'images/lake.jpg',
+                        width: double.infinity,
+                        height: 240,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 32),
+                      TextField(controller: controller),
+                    ],
                   ),
-                  const SizedBox(height: 32),
-                  TextField(
-                      controller: controller
-                  ),
-                  ElevatedButton(onPressed: () {}, child: const Text('Save'),
+                  ElevatedButton(
+                    onPressed: () {
+                      save();
+                      Navigator.of(context).pop(cardInfo2);
+                    },
+                    child: const Text('Save'),
                   ),
                 ],
               ),
             ),
+          ),
         ),
-    );
+       );
   }
 }
